@@ -1,5 +1,5 @@
 * {
-	margin: 0;
+	margin: auto;
 	padding: 0;
 	box-sizing: border-box;
 	
@@ -16,6 +16,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	min-height: 100vh;
+	margin: auto;
 }
 
 .home {
@@ -35,6 +36,7 @@ form {
 	background-image: linear-gradient(to bottom, #00BC7E, #108775);
 	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 	border-radius: 16px;
+	margin: auto;
 }
 
 form h1 {
