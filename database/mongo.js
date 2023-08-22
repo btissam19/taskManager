@@ -1,23 +1,24 @@
-// const mongoose=require('mongoose');
-// mongoose.connect("mongodb://localhost:27017/taskManager")
-// .then(()=>{
-//     console.log('mongoose connected');
-// })
-// .catch((e)=>{
-//     console.log('failed');
-// })
-// const logInSchema=new mongoose.Schema({
-//     name:{
-//         type:String,
-//         required:true
-//     },
-//     password:{
-//         type:String,
-//         required:true
-//     }
-// })
+const mongoose = require('mongoose');
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/taskManager';/// t localst and t address are diffrence tey can make problem in connection to database
+;
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => {
+    console.log('Successfully connected to MongoDB');
+})
+.catch(err => {
+    console.error('Error connecting to MongoDB', err);
+});
+mongoose.connection.on('connected', () => {
+    console.log('Connected to MongoDB successfully!');
+});
 
-// const LogInCollection=new mongoose.model('LogInCollection',logInSchema)
+mongoose.connection.on('error', (err) => {
+    console.error('Error connecting to MongoDB:', err);
+});
 
-// module.exports=LogInCollection 
-
+mongoose.connection.on('disconnected', () => {
+    console.log('Disconnected from MongoDB');
+});

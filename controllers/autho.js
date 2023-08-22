@@ -5,11 +5,7 @@ loginController=(req,res)=>{
     if(req.method==="GET"){
     res.render('login')}
     else if(req.method==="POST"){
-         data ={name:"ibtissam",password:"2001"}
-        //  newdata=r
-       const newdata= new LogInCollection(data)
-       newdata.save()
-       res.json(data)
+      res.render('home')
     }
     else{res.send("wrong route method")}
 }
@@ -17,7 +13,30 @@ singupController=(req,res)=>{
     if(req.method==="GET"){
     res.render('sing')}
     else if(req.method==="POST"){
-        res.send('hello from singup post requset')
+        async (req, res) => {
+             const data = {
+                name: req.body.name,
+                password: req.body.password
+            }
+        
+            const checking = await LogInCollection.findOne({ name: req.body.name })
+        
+           try{
+            if (checking.name === req.body.name && checking.password===req.body.password) {
+                res.send("user details already exists")
+            }
+            else{
+                await LogInCollection.insertMany([data])
+            }
+           }
+           catch{
+            res.send("wrong inputs")
+           }
+        
+            res.status(201).render("home", {
+                naming: req.body.name
+            })
+        }
     }
     else{res.send("wrong route method")}
 }
