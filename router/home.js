@@ -5,8 +5,11 @@ const db =require('../models/User')
 const hbs=require('hbs')
 const path=require('path')
 app.set('view engine', 'hbs');
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// app.use(express.json())
+// app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../public')));
 
 const loginRouter = require('./login');   
