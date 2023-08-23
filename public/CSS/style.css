@@ -760,7 +760,7 @@ a:focus {
   display: flex;
 }
 
-.contact_section .form_container .btn_box button {
+.contact_section .form_container .btn_box input {
   border: none;
   display: inline-block;
   padding: 12px 55px;

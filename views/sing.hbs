@@ -15,26 +15,18 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/singup" method="post">
+    <form action="/singup" method="POST">
     
         <a href="/login">Back to login</a>
         <h3>Sin Up Here </h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="name" id="username">
-        <h6 id="usernameError"></h6>
         <label for="username">Email</label>
-        <input type="Email" placeholder="Email or Phone" id="email">
+        <input type="email" placeholder="Email or Phone" id="email" name="email">
         <h6 id="emailerror"></h6>
         <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password">
+        <input type="password" placeholder="Password" id="password" name="password">
         <h6  id="passwordError"></h6>
         <div class="button">
         <input type="submit"></div>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-github"></i> github</div>
-        </div>
     </form>
     <script src="/JS/login.js">
         

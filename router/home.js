@@ -1,7 +1,8 @@
 
 const express = require('express');
 const app = express();
-const db =require('../models/User')
+// const db =require('../models/User')
+// const Contact= require('../models/Contac')
 const hbs=require('hbs')
 const path=require('path')
 app.set('view engine', 'hbs');
@@ -15,9 +16,10 @@ console.log(path.join(__dirname, '../public'))
 
 const loginRouter = require('./login');   
 const singupRouter = require('./singup'); 
-
+const contacUSroute=require('./contacUs')
 app.use('/login', loginRouter);
-app.use('/signup', singupRouter); 
+app.use('/singup', singupRouter); 
+app.use('/contact',contacUSroute)
 
 const port = 3000;
 
