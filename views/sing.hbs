@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-       <link rel="stylesheet" href="/main.css">
+  <!-- Design by foolishdeveloper.com -->
+    <title>Task Manager</title>
+ 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/CSS/login.css">
+    <!--Stylesheet-->
 </head>
 <body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="/singup" method="post">
     
+        <a href="/login">Back to login</a>
+        <h3>Sin Up Here </h3>
 
-
-    <form action="/signup" method="post" >
-	    <h1>Sign Up</h1>
-        <input placeholder="Name" name="name" type="text">
-        <br>
-        <input placeholder="Email" name="email" type="email">
-        <br>
-        <input placeholder="Password" name="password" type="password">
-        <br>
-        <input class="sub" type="submit">
+        <label for="username">Username</label>
+        <input type="text" placeholder="name" id="username">
+        <h6 id="usernameError"></h6>
+        <label for="username">Email</label>
+        <input type="Email" placeholder="Email or Phone" id="email">
+        <h6 id="emailerror"></h6>
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" id="password">
+        <h6  id="passwordError"></h6>
+        <div class="button">
+        <input type="submit"></div>
+        <div class="social">
+          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <div class="fb"><i class="fab fa-github"></i> github</div>
+        </div>
     </form>
-
-       <a href="/">Go back to login page</a>
-
+    <script src="/JS/login.js">
+        
+    </script>
 </body>
-</html>

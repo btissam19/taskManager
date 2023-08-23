@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 // app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, '../public')));
+console.log(path.join(__dirname, '../public'))
 
 const loginRouter = require('./login');   
 const singupRouter = require('./singup'); 
