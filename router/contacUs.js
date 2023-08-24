@@ -1,5 +1,5 @@
 const express=require('express')
 const contactUs=express.Router()
-const auth=require('../controllers/autho')
-contactUs.route('/').post(auth.contactUs)
+const Contac=require('../controllers/contactus')
+contactUs.route('/').post(Contac.contactUs)
 module.exports=contactUs

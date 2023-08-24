@@ -1,5 +1,6 @@
 const User = require('../models/User')
 const Contact= require('../models/Contac')
+const Task=require("../models/Task")
 const db=require('../database/mongo')
 loginController = async (req, res) => {
     if (req.method === "GET") {
@@ -14,7 +15,7 @@ loginController = async (req, res) => {
             const checking = await User.findOne({ email: req.body.email });
 
             if (checking && checking.password === data.password) {
-                return res.status(201).render("home");
+                return res.status(201).render("dashboard");
             } else {
                 return res.render('sing');
             }
@@ -69,10 +70,23 @@ contactUs= async (req,res)=>{
         console.log(e)
         return res.send('OOOOOPPPPS')
     }
-        
-
 }
 
+// tasks= async(req,res)=>{
+//     if(req.method === "GET"){
+//     return  res.render('task')
+//    }
+//    else if(req.method==="POST"){
+//      const data={ name:req.body.name}
+//      try{
+//         await Task.insertMany([data]);
+//          return res.send(req.body)}
+//      catch(e){console.log(e);
+//          return res.send("wrong things happend")
+//      }
+//  }
+
+// }
 
 module.exports={loginController,singupController,contactUs}
 
