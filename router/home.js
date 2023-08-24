@@ -13,7 +13,7 @@ const loginRouter = require('./login');
 const singupRouter = require('./singup'); 
 const contacUSroute=require('./contacUs')
 const taskrouter=require('./task')
-app.use('/tasks',taskrouter)
+app.use('/task',taskrouter)
 app.use('/login', loginRouter);
 app.use('/singup', singupRouter); 
 app.use('/contact',contacUSroute)

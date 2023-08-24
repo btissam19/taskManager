@@ -5,7 +5,7 @@ const userSingSchema=new mongoose.Schema({   // It's more conventional to name t
 
     email:{
         type:String,
-        required:false
+        required:[true,"you have to put email"]
 
     },
     password: {
