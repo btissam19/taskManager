@@ -1,8 +1,16 @@
 
 const express = require('express');
 const app = express();
-const hbs=require('hbs')
+// const hbs=require('hbs')
+
+const exphbs = require('express-handlebars');
 const path=require('path')
+app.engine('hbs', exphbs.engine({
+    extname: '.hbs',
+    layoutsDir: path.join(__dirname, '../views') ,  // or whatever your default layout is
+    partialsDir: 'views/partials'
+   // path to your partials
+}));
 app.set('view engine', 'hbs');
 const bodyParser = require('body-parser');
 require('axios')
@@ -23,18 +31,12 @@ const port = 3000;
 
 
 app.get('/',(req, res) => {
-        res.render('home');
+        res.render('home',{ layout: false }); // No layout will be used for anotherViewNam
     });
-app.get('/dashboard',(req, res) => {
-      res.render('dashboard');
-  });
+app.get('/transaction',(req, res) => {
+        res.render('transaction',{ layout: false }); // No layout will be used for anotherViewNam
+    });
 
-//  app.get('/addtask',(req,res)=>{
-//     res.render('taksindex.hbs');
-// })
-// app.get('/edittask',(req,res)=>{
-//     res.render('task');
-// })
 app.listen(port, () => {
           console.log(`Server is running at http://localhost:${port}`); });
       

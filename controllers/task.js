@@ -2,12 +2,16 @@ const Task=require("../models/Task")
 const db=require('../database/mongo')
 getAllTask = async (req, res) => {
     try {
-        const tasks = await Task.find({});
-        return res.render('taksindex', { tasks });
+        const tasks = await Task.find({}).lean();
+        return res.render('taksindex', { 
+            layout: false,
+            tasks: tasks
+        });
     } catch (e) {
         res.json({ msg: e });
     }
 }
+
 
 createNewTask=async (req,res)=>{
     try {
@@ -24,13 +28,13 @@ createNewTask=async (req,res)=>{
 getSingleTask=async (req, res) => {
     try {
         const taskId = req.params.id;
-        const task = await Task.findById(taskId);
+        const task = await Task.findById(taskId).lean();
         
         if (!task) {
             return res.status(404).send('Task not found');
         }
 
-        res.render('task', { task });
+        res.render('task', { task:task,layout:false });
     } catch (e) {
         res.status(500).send('Server Error');
     }

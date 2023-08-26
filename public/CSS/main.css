@@ -329,8 +329,8 @@ form > :last-child {
   text-align: center;
 }
 .tasks-container {
-  width: 100%;
-  width: 90vw;
+  /* width: 100%;
+  width: 90vw; */
   max-width: var(--fixed-width);
   margin: 0 auto;
   margin-top: 2rem;
@@ -341,7 +341,7 @@ form > :last-child {
   gap: 1rem;
 }
 .single-task {
-  padding: 1rem 2.5rem;
+  /* padding: 1rem 1rem; */
   background: var(--white);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
@@ -358,10 +358,10 @@ form > :last-child {
 }
 .single-task span {
   display: inline-block;
-  width: 0.5rem;
+  width:min-content;
   height: 0.5rem;
-  margin-left: -1.25rem;
-  margin-right: 1.5rem;
+  /* margin-left: -1.25rem;
+  margin-right: 1.5rem; */
 }
 .single-task .fa-check-circle {
   font-size: 1rem;

@@ -1,10 +1,10 @@
 const User = require('../models/User')
 const Contact= require('../models/Contac')
-const Task=require("../models/Task")
+const Task=require("../models/Task")                                  
 const db=require('../database/mongo')
 loginController = async (req, res) => {
     if (req.method === "GET") {
-        return res.render('login');
+        return res.render('login',{ layout: false });
     } else if (req.method === "POST") {
         const data = {
             email: req.body.email,
@@ -15,7 +15,8 @@ loginController = async (req, res) => {
             const checking = await User.findOne({ email: req.body.email });
 
             if (checking && checking.password === data.password) {
-                return res.status(201).render("dashboard");
+                const tasks = await Task.find({}).lean();
+                return res.status(201).render('layouts/dashboard', { layout: false ,tasks: tasks});
             } else {
                 return res.render('sing');
             }
@@ -28,7 +29,7 @@ loginController = async (req, res) => {
 
 singupController = async (req, res) => {
     if (req.method === "GET") {
-        return res.render('sing');
+        return res.render('sing',{ layout: false });
     } else if (req.method === "POST") {
         console.log(req.body);
         const data = {
@@ -43,7 +44,7 @@ singupController = async (req, res) => {
                 return res.send("user details already exist");
             } else {
                 await User.insertMany([data]);
-                return res.status(201).render("login");
+                return res.status(201).render("login",{ layout: false });
             }
         } catch(e) {
             console.log(e);
