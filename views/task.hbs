@@ -1,3 +1,4 @@
+<!-- ... -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,36 +13,37 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     />
     <!-- normalize css -->
-    <link rel="stylesheet" href="/CSS/normilize.css" />
+    <link rel="stylesheet" href="/CSS/normalize.css" />
     <!-- main css -->
-    <link rel="stylesheet" href="/CSS/task.css" />
-    <title>Task Manager || Final</title>
+    <link rel="stylesheet" href="/CSS/main.css" />
+    <title>Task Manager</title>
   </head>
   <body>
-    <form class="task-form" action="/tasks" method="POST">
-      <h4>task manager</h4>
-      <div class="form-control">
-        <input
-          type="text"
-          name="name"
-          class="task-input"
-          placeholder="e.g. wash dishes"
-        />
-        <input type="submit" class="btn submit-btn">
-      </div>
-      <div class="form-alert"></div>
-    </form>
-    <section class="tasks-container">
-      <p class="loading-text">Loading...</p>
-      <div class="tasks"></div>
-    </section>
-    <!-- axios -->
-    <script
+<form class="single-task-form">
+    <h4>Edit Task</h4>
+    <div class="form-control">
+        <label>Task ID</label>
+        <p class="task-edit-id">{{task._id}}</p>
+    </div>
+    <div class="form-control">
+        <label for="name">Name</label>
+        <input type="text" name="name" class="task-edit-name" value="{{task.name}}" />
+    </div>
+    <div class="form-control">
+        <label for="completed">completed</label>
+        <input type="checkbox" name="completed" class="task-edit-completed" {{#if task.completed}}checked{{/if}} />
+    </div>
+    <button type="submit" class="block btn task-edit-btn">edit</button>
+    <div class="form-alert"></div>
+</form>
+  <a href="/task" class="btn back-link">back to tasks</a>
+<script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
       integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="./browser-app.js"></script>
+    <script src="/JS/edit-task.js"></script>
   </body>
 </html>
+<!-- ... -->

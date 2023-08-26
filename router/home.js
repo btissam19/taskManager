@@ -5,6 +5,7 @@ const hbs=require('hbs')
 const path=require('path')
 app.set('view engine', 'hbs');
 const bodyParser = require('body-parser');
+require('axios')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
@@ -28,7 +29,12 @@ app.get('/dashboard',(req, res) => {
       res.render('dashboard');
   });
 
- 
+//  app.get('/addtask',(req,res)=>{
+//     res.render('taksindex.hbs');
+// })
+// app.get('/edittask',(req,res)=>{
+//     res.render('task');
+// })
 app.listen(port, () => {
           console.log(`Server is running at http://localhost:${port}`); });
       

@@ -1,59 +1,83 @@
 const Task=require("../models/Task")
 const db=require('../database/mongo')
-getAllTask= async (req,res)=>{
-    try{
-    const task =await Task.find({})
-    res.json(task)}
-    catch(e){
-        res.json({msg:e})
+getAllTask = async (req, res) => {
+    try {
+        const tasks = await Task.find({});
+        console.log({ tasks })
+        return res.render('taksindex', { tasks });
+    } catch (e) {
+        res.json({ msg: e });
     }
-
 }
+
 createNewTask=async (req,res)=>{
-    const task = await Task.create({name:"latofamon",completed:true,latof:"babab"})
-    res.send(task.name)
-
-}
-
-getSingleTask=async (req,res)=>{
-    const {id:taskId}=req.params
-    try{
-    const task= await Task.findOne({_id:taskId})
-    if(!task){
-        return res.json({msg:`no one wit ${taskId}`})
-    }
-    res.json({task})}
-    catch(e){
-        res.json({msg:e})
+    try {
+        const { name } = req.body;
+        const newTask = new Task({ name, completed: false });
+        await newTask.save();
+        res.json({ task: newTask });
+    } catch (e) {
+        res.status(500).json({ msg: e.message });
     }
 
 }
 
-editTask=async(req,res)=>{
-    const {id:taskId}=req.params
-    try{
-    const task= await Task.findByIdAndUpdate({_id:taskId},req.body)
-    if(!task){
-        return res.json({msg:`no one wit ${taskId}`})
-    }
-    res.json({task})}
-    catch(e){
-        res.json({msg:e})
+getSingleTask=async (req, res) => {
+    try {
+        const taskId = req.params.id;
+        const task = await Task.findById(taskId);
+        
+        if (!task) {
+            return res.status(404).send('Task not found');
+        }
+
+        res.render('task', { task });
+    } catch (e) {
+        res.status(500).send('Server Error');
     }
 }
-deleteTask=async (req,res)=>{
-    const {id:taskId}=req.params
-    try{
-    const task= await Task.findByIdAndDelete({_id:taskId})
-    if(!task){
-        return res.json({msg:`no one wit ${taskId}`})
+
+
+
+editTask=async (req, res) => {
+    const updates = Object.keys(req.body);  // Extract keys from the request body
+    const allowedUpdates = ['name', 'completed'];  // Fields that can be updated
+    const isValidUpdate = updates.every((update) => allowedUpdates.includes(update));
+
+    if (!isValidUpdate) {
+        return res.status(400).send({ error: 'Invalid updates!' });
     }
-    res.json({task})}
-    catch(e){
-        res.json({msg:e})
+
+    try {
+        const task = await Task.findById(req.params.id);
+
+        if (!task) {
+            return res.status(404).send();
+        }
+
+        // Update the task
+        updates.forEach((update) => task[update] = req.body[update]);
+        await task.save();
+
+        res.json({ msg: 'Task updated successfully', task });
+    } catch (e) {
+        res.status(500).json({ msg: e.message });
+    }
+
+}
+
+
+    deleteTask=async (req,res)=>{
+    try {
+        const taskId = req.params.id;
+        await Task.findByIdAndDelete(taskId);
+        res.json({ msg: 'Task deleted successfully' });
+    } catch (e) {
+        res.status(500).json({ msg: e.message });
     }
 
 
 }
+
 
 module.exports={deleteTask,editTask,getSingleTask,createNewTask,getAllTask}
