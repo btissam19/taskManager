@@ -3,7 +3,6 @@ const db=require('../database/mongo')
 getAllTask = async (req, res) => {
     try {
         const tasks = await Task.find({});
-        console.log({ tasks })
         return res.render('taksindex', { tasks });
     } catch (e) {
         res.json({ msg: e });
