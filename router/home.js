@@ -19,6 +19,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public')));
+
 app.use('/task',taskrouter)
 app.use('/login', loginRouter);
 app.use('/singup', singupRouter); 
@@ -32,7 +33,7 @@ app.get('/',(req, res) => {
         res.render('home',{ layout: false }); 
     });
 app.get('/project',(req, res) => {
-        res.render('projectClient',{ layout: false });
+        res.render('projectForms',{ layout: false });
     });
 
 app.listen(port, () => {

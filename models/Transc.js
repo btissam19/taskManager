@@ -1,17 +1,22 @@
-const mongoose=require('mongoose')
-const TranscSchema= new mongoose.Schema({
-          name:{
-            type:String,
-            required:true
-        },
-        number:{
-            type:Number,
-            required:true
-        },
-        date:{
-            type:Date,
-            required:false
-        }
-})
+const mongoose = require('mongoose');
 
-module.exports=mongoose.model('transc',TranscSchema)
+const TranscSchema = new mongoose.Schema({
+    project: {
+        type: String, 
+        required: true
+    },
+    developer: {  
+        type: String,
+        required: true
+    },
+    client: {
+        type: String,
+        required: true
+    },
+    status: {
+        type: String,  
+        required: true
+    }
+});
+
+module.exports = mongoose.model('transc', TranscSchema);

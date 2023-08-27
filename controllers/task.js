@@ -40,8 +40,6 @@ getSingleTask=async (req, res) => {
     }
 }
 
-
-
 editTask=async (req, res) => {
     const updates = Object.keys(req.body);  // Extract keys from the request body
     const allowedUpdates = ['name', 'completed'];  // Fields that can be updated

@@ -1,38 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
- 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/CSS/login.css">
-    <!--Stylesheet-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/CSS/dashboardout.css">
+    <style>
+        /* Agregar estilos para la vista de dispositivos pequeños */
+        @media (max-width: 768px) {
+            .flex-wrap {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .section-small {
+                width: 50%;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    <form action="/login" method="post">
-        <a href="/singup">Create an Acount</a>
-        <h3>Login Here </h3>
-
-        <label for="username">Username</label>
-        <input type="text" placeholder="name" id="username" name="email">
-        <h6 id="usernameErrorlogin"></h6>
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" id="password" name="password">
-        <h6  id="passwordErrorlogin"></h6>
-        <div class="button">
-        <input type="submit"></div>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-github"></i> github</div>
+<body class="bg-gray-100">
+  <div class="min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+      <div class="flex justify-center mb-8">
+        <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="Logo" class="w-30 h-20">
+      </div>
+      <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6"Login</h1>
+      <form action="/login" method="post">
+        <div class="mb-6">
+          <label for="email" class="block mb-2 text-sm text-gray-600">Username</label>
+           <h6 id="usernameErrorlogin"></h6>
+          <input type="text" placeholder="name" id="username" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
         </div>
-    </form>
+        <div class="mb-6">
+          <label for="password" class="block mb-2 text-sm text-gray-600">Password</label>
+          <input type="password" placeholder="Password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+           <h6 id="usernameErrorlogin"></h6>
+          <a href="#" class="block text-right text-xs text-cyan-600 mt-2">Forget password</a>
+        </div>
+        <div class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"><input type="submit"></div>
+      </form>
+      <div class="text-center">
+        <p class="text-sm"><a href="/singup" class="text-cyan-600">Register here</a></p>
+      </div>
+    </div>
+  </div>
     <script src="/JS/login.js">
         
     </script>
 </body>
+
+</html>

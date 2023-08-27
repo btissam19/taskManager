@@ -1,27 +1,25 @@
 const Transc=require('../models/Transc')
 const db=require('../database/mongo')
 
-const getAllTransc=async(req,res)=>{
-    try{
-       const  truncs= await Transc.find({})
-      return  res.json(truncs)
+const getAllTransc = async (req, res) => {
+    try {
+        const truncs = await Transc.find({}).lean();
+        return res.render('projectClient', { layout: false, truncs: truncs });
+    } catch (e) {
+        res.json({ msg: e });
     }
-   catch(e){
-    res.json({msg:e})}
 }
-const createTransc=async(req,res)=>{
-    try{
-    const {name,number,date}=req.body
-    const newTransc=new Transc({name,number,date:19/12/2001})
-    await newTransc.save()
-    return res.json(newTransc)
-}
-catch(e){
-    return  res.json({msg:e})
+const createTransc = async (req, res) => {
+    try {
+        const { project, developer, client, status } = req.body;
+        const newTransc = new Transc({project, developer, client, status });
+        await newTransc.save();
+        return res.json(newTransc);
+    } catch (e) {
+        return res.json({ msg: e });
+    }
 }
 
-
-}
 const getOneTransc=async(req,res)=>{
     try{
         const TranscId=req.params.id;
@@ -45,7 +43,7 @@ const updatTransc=async(req,res)=>{
   if (!trunc) {
     return res.send("not task to updat")
   }
-  return res.json({trunc})
+  return res.render('editproject',)
 
 }
 catch(e){
