@@ -137,7 +137,7 @@ a {
   cursor: pointer;
   appearance: none;
   color: var(--white);
-  background: var(--primary-500);
+  background-color:#06B6D4;
   border: none;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
@@ -149,7 +149,7 @@ a {
 
 .btn:hover {
   color: var(--white);
-  background: var(--primary-700);
+  background: var();
   box-shadow: var(--shadow-2);
 }
 button.small {

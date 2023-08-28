@@ -28,8 +28,6 @@ tasksDOM.addEventListener('click', async (e) => {
   }
 });
 
-
-
 formDOM.addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = taskInputDOM.value;
