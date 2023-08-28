@@ -23,34 +23,40 @@ const createTransc = async (req, res) => {
 const getOneTransc=async(req,res)=>{
     try{
         const TranscId=req.params.id;
-        const SingTransc= await Transc.findById(TranscId)
-        if(!SingTransc){
+        const truncs= await Transc.findById(TranscId).lean()
+        if(!truncs){
             return res.status(404).send("transction not found")
         }
-        return res.json(SingTransc)
+        return res.render('editProject',{truncs:truncs,layout:false})
     }
    catch(e){
     res.json({msg:e})}
 }
 
+const updatTransc =async (req, res) => {
+    const allowedUpdates = ['project', 'developer', 'client', 'status'];  
+    const updates = Object.keys(req.body);  
+    const isValidUpdate = updates.every((update) => allowedUpdates.includes(update));
 
+    if (!isValidUpdate) {
+        return res.status(400).send({ error: 'Invalid updates!' });
+    }
 
-const updatTransc=async(req,res)=>{
-    try{
-    const {trunscId}=req.params.id
-   const trunc= await Transc.findOneAndUpdate({trunscId},{name:"software",number:23},{new:true,runValidators:true})
-    
-  if (!trunc) {
-    return res.send("not task to updat")
-  }
-  return res.render('editproject',)
+    try {
+        const truncs = await Transc.findById(req.params.id); 
 
+        if (!truncs) {
+            return res.status(404).send({ error: 'Project not found' });
+        }
+
+        updates.forEach((update) => truncs[update] = req.body[update]);
+        await truncs.save();
+
+        res.json({ msg: 'Project updated successfully', data: truncs });
+    } catch (e) {
+        res.status(500).json({ msg: e.message });
+    }
 }
-catch(e){
-    res.json({msg:e})
-}
-}
-
 
 
 const deleteTransc=async(req,res)=>{
