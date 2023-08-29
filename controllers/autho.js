@@ -20,7 +20,7 @@ loginController = async (req, res) => {
                 res.render('layouts/dashboard', { layout: false, tasks: tasks, truncs: truncs });
 
             } else {
-                return res.render('sing');
+                return res.render('sing',{ layout: false, msg1: 'Register here!' });
             }
         } catch (error) {
             return error
@@ -31,6 +31,7 @@ loginController = async (req, res) => {
 singupController = async (req, res) => {
     if (req.method === "GET") {
         return res.render('sing',{ layout: false });
+        
     } else if (req.method === "POST") {
         console.log(req.body);
         const data = {
@@ -42,7 +43,7 @@ singupController = async (req, res) => {
 
         try {
             if (checking && checking.email === data.email && checking.password === data.password) {
-                return res.render('singwrong',{ layout: false})
+                return res.render('sing',{ layout: false, msg: 'User already exists in the database!' })
             } else {
                 await User.insertMany([data]);
                 return res.status(201).render("login",{ layout: false });
