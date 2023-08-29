@@ -30,8 +30,11 @@ app.use('/transaction',transcRoute)
 
 
 app.get('/',(req, res) => {
-        res.render('home',{ layout: false }); 
+        res.render('login',{ layout: false }); 
     });
+app.get('/logout',(req,res)=>{
+    res.render('login',{ layout: false });
+})
 app.get('/project',(req, res) => {
         res.render('projectForms',{ layout: false });
     });
