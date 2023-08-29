@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const Contact= require('../models/Contac')
-const Task=require("../models/Task")                                  
+const Task=require("../models/Task") 
+const Truncs=require("../models/Transc")                                 
 const db=require('../database/mongo')
 loginController = async (req, res) => {
     if (req.method === "GET") {
@@ -16,7 +17,9 @@ loginController = async (req, res) => {
 
             if (checking && checking.password === data.password) {
                 const tasks = await Task.find({}).lean();
-                return res.status(201).render('layouts/dashboard', { layout: false ,tasks: tasks});
+                const truncs=await Truncs.find({}).lean();
+                res.render('layouts/dashboard', { layout: false, tasks: tasks, truncs: truncs });
+
             } else {
                 return res.render('sing');
             }

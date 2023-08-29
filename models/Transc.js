@@ -14,9 +14,10 @@ const TranscSchema = new mongoose.Schema({
         required: true
     },
     status: {
-        type: String,  
+        type: String,
+        enum: ['completed', 'in_progress', 'cancelled'],  // This ensures only these values are allowed
         required: true
-    }
+      }
 });
 
 module.exports = mongoose.model('transc', TranscSchema);

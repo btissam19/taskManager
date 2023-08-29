@@ -39,7 +39,7 @@
                     <i class="fas fa-home mr-2"></i>Dashboard
                 </button>
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white" href="/lougout">
-                       Logout  <i class="fa fa-sign-out  text-gray-500 text-lg" ></i>
+                      <i class="icon-signout"></i> 
                 </a>
 
             </nav>
@@ -63,7 +63,11 @@
                     </div>
                     <div class="bg-white p-4 rounded-md">
                         <h2 class="text-gray-500 text-lg font-semibold pb-1">completed vs incompleted Tasks</h2>
-                        <div class="my-1"></div> <!-- Espacio de separación -->
+                        <div class="my-1"></div>
+                        {{#each tasks}}
+                        <div class="single-task {{#if completed}}task-completed{{/if}}"></div>
+                        {{/each}}
+                         <!-- Espacio de separación -->
                         <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
                         <div class="chart-container" style="position: relative; height:150px; width:100%">
                             <!-- El canvas para la gráfica -->
@@ -85,9 +89,13 @@
                     </div>
                    <div class="bg-white p-4 rounded-md mt-4">
                  <h2 class="text-gray-500 text-lg font-semibold pb-4">Project Status</h2>
-                <div class="my-1"></div> <!-- Espacio de separación -->
-                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div> <!-- Línea con gradiente -->
-                   <div class="chart-container" style="position: relative; height:150px; width:100%">
+                <div class="my-1"></div> 
+                  {{#each truncs}}
+               <div class="single-project {{status}}"></div>
+               {{/each}}
+
+                 <div class="bg-gradient-to-r from-cyan-300 to-cyan-500 h-px mb-6"></div>
+                     <div class="chart-container" style="position: relative; height:150px; width:100%">
                             <!-- El canvas para la gráfica -->
                             <canvas id="commercesChartTow"></canvas>
                         </div>
@@ -98,12 +106,28 @@
     </div>
 </div>
 <script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    // For tasks
+    let tasks = document.getElementsByClassName('single-task');
+    let completedTasks = 0;
+    let totalTasks = tasks.length;
+
+    for(let task of tasks) {
+        if(task.classList.contains('task-completed')) {
+            completedTasks++;
+        }
+    }
+
+    let uncompletedTasks = totalTasks - completedTasks;
+    completedTasks = (completedTasks * 100) / totalTasks;
+    uncompletedTasks = (uncompletedTasks * 100) / totalTasks;
+
     var commercesChart = new Chart(document.getElementById('commercesChart'), {
         type: 'doughnut',
         data: {
-            labels: ['completed', 'incompleted'],
+            labels: [`completed ${completedTasks}%`, `uncompleted ${uncompletedTasks}%`],
             datasets: [{
-                data: [60, 40],
+                data: [completedTasks, uncompletedTasks],
                 backgroundColor: ['#06B6D4', '#CFFAFE'],
             }]
         },
@@ -115,13 +139,34 @@
             }
         }
     });
-      var commercesCharttow = new Chart(document.getElementById('commercesChartTow'), {
+
+    // For projects
+    let projects = document.getElementsByClassName('single-project');
+    let completedProjects = 0;
+    let inProgressProjects = 0;
+    let cancelledProjects = 0;
+    let totalProject=projects.length
+
+    for(let project of projects) {
+        if(project.classList.contains('completed')) {
+            completedProjects++;
+        } else if (project.classList.contains('in_progress')) {
+            inProgressProjects++;
+        } else if (project.classList.contains('cancelled')) {
+            cancelledProjects++;
+        }
+    }
+    completedProjects=(completedProjects*100)/totalProject
+    inProgressProjects=(inProgressProjects*100)/totalProject
+    cancelledProjects=(cancelledProjects*100)/totalProject
+
+    var commercesChartTow = new Chart(document.getElementById('commercesChartTow'), {
         type: 'doughnut',
         data: {
-            labels: ['completed', 'in progrees','cancel'],
+            labels: [`completed ${completedProjects}%`, `in progress ${inProgressProjects}%`, `cancelled ${cancelledProjects}%`],
             datasets: [{
-                data: [60, 20,20],
-                backgroundColor: ['#06B6D4', '#6EE7F9','#CFFAFE'],
+                data: [completedProjects, inProgressProjects, cancelledProjects],
+                backgroundColor: ['#06B6D4', '#6EE7F9', '#CFFAFE'],
             }]
         },
         options: {
@@ -139,6 +184,7 @@
     menuBtn.addEventListener('click', () => {
         sideNav.classList.toggle('hidden'); 
     });
+});
 </script>
 </body>
 </html>

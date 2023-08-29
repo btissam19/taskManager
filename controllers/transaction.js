@@ -4,6 +4,7 @@ const db=require('../database/mongo')
 const getAllTransc = async (req, res) => {
     try {
         const truncs = await Transc.find({}).lean();
+        console.log(truncs)
         return res.render('projectClient', { layout: false, truncs: truncs });
     } catch (e) {
         res.json({ msg: e });
@@ -14,6 +15,7 @@ const createTransc = async (req, res) => {
         const { project, developer, client, status } = req.body;
         const newTransc = new Transc({project, developer, client, status });
         await newTransc.save();
+        console.log(newTransc)
         return res.json(newTransc);
     } catch (e) {
         return res.json({ msg: e });

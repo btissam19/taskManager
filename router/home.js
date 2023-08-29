@@ -32,12 +32,13 @@ app.use('/transaction',transcRoute)
 app.get('/',(req, res) => {
         res.render('login',{ layout: false }); 
     });
-app.get('/logout',(req,res)=>{
+app.get('/lougout',(req,res)=>{
     res.render('login',{ layout: false });
 })
 app.get('/project',(req, res) => {
         res.render('projectForms',{ layout: false });
     });
+    
 
 app.listen(port, () => {
           console.log(`Server is running at http://localhost:${port}`); });
