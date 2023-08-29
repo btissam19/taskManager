@@ -6,7 +6,6 @@ const port = 3000;
 const bodyParser = require('body-parser');
 const loginRouter = require('./login');   
 const singupRouter = require('./singup'); 
-const contacUSroute=require('./contacUs')
 const taskrouter=require('./task')
 const transcRoute=require('./transaction')
 
@@ -23,7 +22,6 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/task',taskrouter)
 app.use('/login', loginRouter);
 app.use('/singup', singupRouter); 
-app.use('/contact',contacUSroute)
 app.use('/transaction',transcRoute)
 
 
