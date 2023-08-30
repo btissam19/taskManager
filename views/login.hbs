@@ -20,10 +20,7 @@
 <body class="bg-gray-100">
   <div class="min-h-screen flex items-center justify-center">
     <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
-      <div class="flex justify-center mb-8">
-        <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="Logo" class="w-30 h-20">
-      </div>
-      <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6"Login</h1>
+      <h1 class="text-2xl font-semibold text-center text-gray-500 mt-8 mb-6">Login</h1>
       <form action="/login" method="post">
         <div class="mb-6">
           <label for="email" class="block mb-2 text-sm text-gray-600">Username</label>
@@ -34,9 +31,12 @@
           <label for="password" class="block mb-2 text-sm text-gray-600">Password</label>
           <input type="password" placeholder="Password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
            <h6 id="usernameErrorlogin"></h6>
-          <a href="#" class="block text-right text-xs text-cyan-600 mt-2">Forget password</a>
+              
         </div>
-        <div class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6"><input type="submit"></div>
+        <div class="w-32 bg-gradient-to-r from-cyan-400 to-cyan-600 text-white text-center py-2 rounded-lg mx-auto block focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 mt-4 mb-6">
+    <input type="submit" value="Submit" style="background: none; border: none; cursor: pointer; outline: none;">
+</div>
+
       </form>
       <div class="text-center">
         <p class="text-sm"><a href="/singup" class="text-cyan-600">Register here</a></p>

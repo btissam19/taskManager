@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const exphbs = require('express-handlebars');
 const path=require('path')
+const Task=require("../models/Task") 
+const Truncs=require("../models/Transc") 
 const port = 3000;
 const bodyParser = require('body-parser');
 const loginRouter = require('./login');   
@@ -36,9 +38,13 @@ app.get('/lougout',(req,res)=>{
 app.get('/project',(req, res) => {
         res.render('projectForms',{ layout: false });
     });
-    
+app.get('/dashboard',async(req,res)=>{
+    const tasks = await Task.find({}).lean();
+    const truncs=await Truncs.find({}).lean();
+    res.render('layouts/dashboard', { layout: false, tasks: tasks, truncs: truncs });
+
+}) 
 
 app.listen(port, () => {
           console.log(`Server is running at http://localhost:${port}`); });
       
-

@@ -20,9 +20,9 @@
 <body>
 <div class="flex flex-col h-screen bg-gray-100">
     <div class="bg-white text-white shadow w-full p-2 flex items-center justify-between">
-        <div class="flex items-center">
+        <div class="flex items-center  ">
             <div class="hidden md:flex items-center w-28 h-18 mr-2"> 
-                <img src="https://www.emprenderconactitud.com/img/POC%20WCS%20(1).png" alt="Logo" class="w-28 h-18 mr-2">
+               
                 <h2 class="font-bold text-xl">logo</h2>
             </div>
             <div class="md:hidden flex items-center">
@@ -36,10 +36,10 @@
         <div class="p-2 bg-white w-60 flex flex-col hidden md:flex" id="sideNav">
             <nav>
                 <button class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white" >
-                    <i class="fas fa-home mr-2"></i>Dashboard
+                    <i class="fas fa-home mr-2"></i><a href="/dashboard">Dashboard</a>
                 </button>
                 <a class="block text-gray-500 py-2.5 px-4 my-4 rounded transition duration-200 hover:bg-gradient-to-r hover:from-cyan-400 hover:to-cyan-300 hover:text-white" href="/lougout">
-                      <i class="icon-signout"></i> 
+                      <i class="fa fa-sign-out" ></i>Logout
                 </a>
 
             </nav>
@@ -125,7 +125,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var commercesChart = new Chart(document.getElementById('commercesChart'), {
         type: 'doughnut',
         data: {
-            labels: [`completed ${completedTasks}%`, `uncompleted ${uncompletedTasks}%`],
+            labels: [`completed ${completedTasks.toFixed(2)}%`, `uncompleted ${uncompletedTasks.toFixed(2)}%`],
             datasets: [{
                 data: [completedTasks, uncompletedTasks],
                 backgroundColor: ['#06B6D4', '#CFFAFE'],
@@ -163,7 +163,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     var commercesChartTow = new Chart(document.getElementById('commercesChartTow'), {
         type: 'doughnut',
         data: {
-            labels: [`completed ${completedProjects}%`, `in progress ${inProgressProjects}%`, `cancelled ${cancelledProjects}%`],
+            labels: [`completed ${completedProjects.toFixed(2)}%`, `in progress ${inProgressProjects.toFixed(2)}%`, `cancelled ${cancelledProjects.toFixed(2)}%`],
             datasets: [{
                 data: [completedProjects, inProgressProjects, cancelledProjects],
                 backgroundColor: ['#06B6D4', '#6EE7F9', '#CFFAFE'],
