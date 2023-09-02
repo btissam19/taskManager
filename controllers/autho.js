@@ -2,6 +2,9 @@ const User = require('../models/User')
 const Task=require("../models/Task") 
 const Truncs=require("../models/Transc")                                 
 const db=require('../database/mongo')
+
+
+
 loginController = async (req, res) => {
     if (req.method === "GET") {
         return res.render('login',{ layout: false });
