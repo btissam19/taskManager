@@ -15,7 +15,7 @@ const TranscSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['completed', 'in_progress', 'cancelled'],  // This ensures only these values are allowed
+        enum: ['completed', 'in_progress', 'cancelled'],  
         required: true
       }
 });

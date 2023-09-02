@@ -1,7 +1,7 @@
 
-const mongoose = require('mongoose');  // corrected spelling
+const mongoose = require('mongoose'); 
 
-const userSingSchema=new mongoose.Schema({   // It's more conventional to name this userSchema
+const userSingSchema=new mongoose.Schema({ 
 
     email:{
         type:String,
@@ -14,5 +14,4 @@ const userSingSchema=new mongoose.Schema({   // It's more conventional to name t
     }
 });
 
-// module.exports = mongoose.model('UserLogin', userLoginSchema ), mongoose.model('UserSing',userSingSchema)
 module.exports=mongoose.model('UserSing',userSingSchema)

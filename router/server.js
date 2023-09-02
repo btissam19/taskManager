@@ -10,7 +10,6 @@ const loginRouter = require('./login');
 const singupRouter = require('./singup'); 
 const taskrouter=require('./task')
 const transcRoute=require('./transaction')
-
 app.engine('hbs', exphbs.engine({
     extname: '.hbs',
     layoutsDir: path.join(__dirname, '../views') , 
@@ -25,10 +24,6 @@ app.use('/task',taskrouter)
 app.use('/login', loginRouter);
 app.use('/singup', singupRouter); 
 app.use('/transaction',transcRoute)
-
-
-
-
 app.get('/',(req, res) => {
         res.render('login',{ layout: false }); 
     });

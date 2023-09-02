@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGODB_URI = 'mongodb://127.0.0.1:27017/taskManager';/// t localst and t address are diffrence tey can make problem in connection to database
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/taskManager';
 ;
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,

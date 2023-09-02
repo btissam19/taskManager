@@ -2,9 +2,9 @@
   "name": "manager",
   "version": "1.0.0",
   "description": "",
-  "main": "./router/home.js",
+  "main": "./router/server.js",
   "scripts": {
-    "dev": "nodemon ./router/home.js",
+    "dev": "nodemon ./router/server.js ",
     "build:css": "postcss ./public/CSS/dashboard.css -o ./public/CSS/dashboardout.css"
   },
   "keywords": [],
